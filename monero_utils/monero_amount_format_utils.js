@@ -29,7 +29,7 @@
 "use strict";
 //
 const monero_config = require("./monero_config")
-const money_format_utils = require("../cryptonote_utils/money_format_utils")
+const money_format_utils = require('@mymonero/mymonero-money-format')
 const instance = money_format_utils(monero_config)
 //
 module.exports = instance;
