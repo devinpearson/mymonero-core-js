@@ -28,7 +28,7 @@
 
 "use strict";
 const mymonero = require("../");
-const monero_config = require('../monero_utils/monero_config') 
+const monero_config = require('@mymonero/mymonero-monero-config') 
 const assert = require('assert')
 
 describe("sendingFunds tests", function()
