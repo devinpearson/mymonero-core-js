@@ -32,7 +32,7 @@
 //
 // v--- These should maybe be injected into a context and supplied to currencyConfig for future platforms
 const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger;
-const nettype_utils = require("../cryptonote_utils/nettype");
+const nettype_utils = require('@mymonero/mymonero-nettype');
 //
 const MyMoneroCoreBridgeEssentialsClass = require('./MyMoneroCoreBridgeEssentialsClass')
 const MyMoneroBridge_utils = require('./MyMoneroBridge_utils')

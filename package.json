@@ -53,6 +53,7 @@
     ]
   },
   "dependencies": {
-    "@mymonero/mymonero-bigint": "^1.0.2"
+    "@mymonero/mymonero-bigint": "^1.0.2",
+    "@mymonero/mymonero-nettype": "^1.0.2"
   }
 }
