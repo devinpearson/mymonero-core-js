@@ -32,7 +32,7 @@ const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger;
 const monero_config = require("./monero_config");
 const moment = require('moment');
 const monero_keyImage_cache_utils = require('@mymonero/mymonero-keyimage-cache');
-const monero_amount_format_utils = require("./monero_amount_format_utils");
+const monero_amount_format_utils = require("@mymonero/mymonero-money-format");
 //
 function ownedParsedTxFrom__orNil(
 	raw_tx,
