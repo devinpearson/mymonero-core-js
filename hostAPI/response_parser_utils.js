@@ -28,7 +28,7 @@
 //
 "use strict";
 //
-const JSBigInt = require("../cryptonote_utils/biginteger").BigInteger;
+const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger;
 const monero_amount_format_utils = require("../monero_utils/monero_amount_format_utils");
 const monero_keyImage_cache_utils = require("../monero_utils/monero_keyImage_cache_utils");
 //

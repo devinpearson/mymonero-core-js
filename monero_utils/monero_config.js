@@ -28,7 +28,7 @@
 //
 "use strict";
 //
-const JSBigInt = require("../cryptonote_utils/biginteger").BigInteger;
+const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger;
 //
 module.exports = {
 	// Number of atomic units in one unit of currency. e.g. 12 => 10^12 = 1000000000000

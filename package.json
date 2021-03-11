@@ -30,17 +30,16 @@
     "url": "https://github.com/mymonero/mymonero-core-js/issues"
   },
   "homepage": "https://github.com/mymonero/mymonero-core-js#readme",
-  "dependencies": {},
   "devDependencies": {
     "babel-core": "6.26.3",
     "babel-loader": "8.0.2",
-    "babel-minify": "0.4.3",
+    "babel-minify": "^0.1.12",
     "html5-fs": "0.1.1",
-    "mocha": "5.2.0",
-    "webpack": "4.19.1",
-    "webpack-cli": "3.1.0",
-    "webpack-merge": "4.1.4",
-    "lodash": ">=4.17.13"
+    "lodash": ">=4.17.13",
+    "mocha": "^8.3.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-merge": "4.1.4"
   },
   "jest": {
     "testEnvironment": "node",
@@ -52,5 +51,8 @@
       "monero_utils/MyMoneroCoreCpp_ASMJS.asm.js",
       "tests/emjs/*"
     ]
+  },
+  "dependencies": {
+    "@mymonero/mymonero-bigint": "^1.0.2"
   }
 }

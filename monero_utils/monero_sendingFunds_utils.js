@@ -28,7 +28,7 @@
 //
 "use strict";
 //
-const JSBigInt = require("../cryptonote_utils/biginteger").BigInteger;
+const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger;
 //
 function _mixinToRingsize(mixin) {
 	return mixin + 1;
