@@ -31,7 +31,7 @@
 // Modified to add RingCT support by luigi1111 (2017)
 //
 // v--- These should maybe be injected into a context and supplied to currencyConfig for future platforms
-const MyMoneroBridge_utils = require('./MyMoneroBridge_utils')
+const MyMoneroBridge_utils = require('@mymonero/mymonero-bridge-utils')
 //
 class MyMoneroBridgeClass_Base
 {

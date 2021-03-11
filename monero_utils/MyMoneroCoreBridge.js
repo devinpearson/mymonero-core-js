@@ -27,7 +27,7 @@
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 const MyMoneroCoreBridgeClass = require('./MyMoneroCoreBridgeClass')
-const MyMoneroBridge_utils = require('./MyMoneroBridge_utils')
+const MyMoneroBridge_utils = require('@mymonero/mymonero-bridge-utils')
 //
 module.exports = function(options)
 {

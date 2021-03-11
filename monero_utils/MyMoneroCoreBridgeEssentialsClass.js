@@ -35,7 +35,7 @@ const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger;
 const nettype_utils = require('@mymonero/mymonero-nettype');
 //
 const MyMoneroBridgeClass_Base = require('./MyMoneroBridgeClass_Base')
-const MyMoneroBridge_utils = require('./MyMoneroBridge_utils')
+const MyMoneroBridge_utils = require('@mymonero/mymonero-bridge-utils')
 //
 class MyMoneroCoreBridgeEssentialsClass extends MyMoneroBridgeClass_Base
 {

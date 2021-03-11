@@ -54,9 +54,11 @@
   },
   "dependencies": {
     "@mymonero/mymonero-bigint": "^1.0.2",
+    "@mymonero/mymonero-bridge-utils": "^1.0.0",
     "@mymonero/mymonero-keyimage-cache": "^1.0.0",
     "@mymonero/mymonero-money-format": "^1.0.2",
     "@mymonero/mymonero-nettype": "^1.0.2",
+    "@mymonero/mymonero-paymentid-utils": "^1.0.2",
     "@mymonero/mymonero-sendfunds-utils": "^1.0.2",
     "moment": "^2.29.1"
   }
