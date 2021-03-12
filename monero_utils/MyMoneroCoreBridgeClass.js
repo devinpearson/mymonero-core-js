@@ -52,13 +52,13 @@ function bridge_sanitized__spendable_out(raw__out) {
 }
 //
 class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
+
 	constructor(this_Module) {
 		super(this_Module);
-		//
+		
 		this._register_async_cb_fns__send_funds();
 	}
-	//
-	//
+	
 	generate_key_derivation(pub, sec) {
 		const args = {
 			pub: pub,
@@ -72,10 +72,11 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	derive_public_key(
 		derivation,
 		out_index,
-		pub, // TODO: fix legacy interface here by moving out_index to last arg pos
+		pub // TODO: fix legacy interface here by moving out_index to last arg pos
 	) {
 		if (typeof pub === "undefined" || pub === "" || pub === null) {
 			throw "Missing pub arg (arg pos idx 2)";
@@ -100,6 +101,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	derive_subaddress_public_key(output_key, derivation, out_index) {
 		if (
 			typeof out_index === "undefined" ||
@@ -121,6 +123,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	derivation_to_scalar(derivation, output_index) {
 		const args = {
 			derivation: derivation,
@@ -134,6 +137,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	decodeRct(rv, sk, i) {
 		const ecdhInfo = []; // should obvs be plural but just keeping exact names in-tact
 		for (var j = 0; j < rv.outPk.length; j++) {
@@ -180,6 +184,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 			mask: ret.mask,
 		};
 	}
+
 	decodeRctSimple(rv, sk, i) {
 		const ecdhInfo = []; // should obvs be plural but just keeping exact names in-tact
 		for (var j = 0; j < rv.outPk.length; j++) {
@@ -226,6 +231,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 			mask: ret.mask,
 		};
 	}
+
 	estimate_fee(args) {
 		const args_str = JSON.stringify(args);
 		const ret_string = this.Module.estimate_fee(args_str);
@@ -235,6 +241,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	estimate_tx_weight(args) {
 		const args_str = JSON.stringify(args);
 		const ret_string = this.Module.estimate_tx_weight(args_str);
@@ -244,6 +251,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return parseInt(ret.retVal, 10);
 	}
+
 	estimate_rct_tx_size(n_inputs, mixin, n_outputs, extra_size, bulletproof) {
 		const args = {
 			n_inputs,
@@ -280,54 +288,50 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 	__key_for_fromCpp__send_funds__success(task_id) {
 		return `fromCpp__send_funds__success-${task_id}`;
 	}
+
 	_register_async_cb_fns__send_funds() {
 		const self = this;
-		self.Module.fromCpp__send_funds__get_unspent_outs = function (
-			task_id,
-			req_params,
-		) {
+		self.Module.fromCpp__send_funds__get_unspent_outs = function (task_id, req_params) {
 			self._cb_handlers__send_funds[
 				self.__key_for_fromCpp__send_funds__get_unspent_outs(task_id)
 			](req_params);
 		};
-		self.Module.fromCpp__send_funds__get_random_outs = function (
-			task_id,
-			req_params,
-		) {
+
+		self.Module.fromCpp__send_funds__get_random_outs = function (task_id, req_params) {
 			self._cb_handlers__send_funds[
 				self.__key_for_fromCpp__send_funds__get_random_outs(task_id)
 			](req_params);
 		};
-		self.Module.fromCpp__send_funds__submit_raw_tx = function (
-			task_id,
-			req_params,
-		) {
+
+		self.Module.fromCpp__send_funds__submit_raw_tx = function (task_id, req_params) {
 			self._cb_handlers__send_funds[
 				self.__key_for_fromCpp__send_funds__submit_raw_tx(task_id)
 			](req_params);
 		};
-		self.Module.fromCpp__send_funds__status_update = function (
-			task_id,
-			params,
-		) {
+
+		self.Module.fromCpp__send_funds__status_update = function (task_id, params) {
 			self._cb_handlers__send_funds[
 				self.__key_for_fromCpp__send_funds__status_update(task_id)
 			](params);
 		};
+
 		self.Module.fromCpp__send_funds__error = function (task_id, params) {
 			self._cb_handlers__send_funds[
 				self.__key_for_fromCpp__send_funds__error(task_id)
 			](params);
 		};
+
 		self.Module.fromCpp__send_funds__success = function (task_id, params) {
 			self._cb_handlers__send_funds[
 				self.__key_for_fromCpp__send_funds__success(task_id)
 			](params);
 		};
 	}
+
 	__new_task_id() {
 		return Math.random().toString(36).substr(2, 9); // doesn't have to be super random
 	}
+
 	async__send_funds(fn_args) {
 		const self = this;
 		const task_id = self.__new_task_id();
@@ -363,14 +367,14 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		] = function (req_params) {
 			// convert bridge-strings to native primitive types
 			req_params.use_dust = MyMoneroBridge_utils.ret_val_boolstring_to_bool(
-				req_params.use_dust,
+				req_params.use_dust
 			);
 			req_params.mixin = parseInt(req_params.mixin);
 			//
 			fn_args.get_unspent_outs_fn(req_params, function (err_msg, res) {
 				const args = self.__new_cb_args_with(task_id, err_msg, res);
 				const ret_string = self.Module.send_cb_I__got_unspent_outs(
-					JSON.stringify(args),
+					JSON.stringify(args)
 				);
 				const ret = JSON.parse(ret_string);
 				if (typeof ret.err_msg !== "undefined" && ret.err_msg) {
@@ -396,7 +400,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 			fn_args.get_random_outs_fn(req_params, function (err_msg, res) {
 				const args = self.__new_cb_args_with(task_id, err_msg, res);
 				const ret_string = self.Module.send_cb_II__got_random_outs(
-					JSON.stringify(args),
+					JSON.stringify(args)
 				);
 				const ret = JSON.parse(ret_string);
 				if (typeof ret.err_msg !== "undefined" && ret.err_msg) {
@@ -419,7 +423,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 			fn_args.submit_raw_tx_fn(req_params, function (err_msg, res) {
 				const args = self.__new_cb_args_with(task_id, err_msg, res);
 				const ret_string = self.Module.send_cb_III__submitted_tx(
-					JSON.stringify(args),
+					JSON.stringify(args)
 				);
 				const ret = JSON.parse(ret_string);
 				if (typeof ret.err_msg !== "undefined" && ret.err_msg) {
@@ -468,7 +472,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 			to_address_string: fn_args.to_address_string,
 			priority: "" + fn_args.priority,
 			nettype_string: nettype_utils.nettype_to_API_string(
-				fn_args.nettype,
+				fn_args.nettype
 			),
 		};
 		if (
@@ -499,6 +503,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 			// TODO: assert Object.keys(ret).length == 0
 		}
 	}
+
 	encrypt_payment_id(payment_id, public_key, secret_key) {
 		const args = {
 			payment_id: payment_id,
@@ -513,6 +518,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	send_step2__try_create_transaction( // send only IPC-safe vals - no JSBigInts
 		from_address_string,
 		sec_keys,
@@ -529,7 +535,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		fee_mask,
 		unlock_time,
 		nettype,
-		optl__fork_version,
+		optl__fork_version
 	) {
 		unlock_time = unlock_time || 0;
 		mix_outs = mix_outs || [];
@@ -555,7 +561,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		var sanitary__using_outs = [];
 		for (let i in using_outs) {
 			const sanitary__output = bridge_sanitized__spendable_out(
-				using_outs[i],
+				using_outs[i]
 			);
 			sanitary__using_outs.push(sanitary__output);
 		}
@@ -581,7 +587,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 						sanitary__mix_out.rct = mix_outs[i].outputs[j].rct;
 					}
 					sanitary__mix_outs_and_amount.outputs.push(
-						sanitary__mix_out,
+						sanitary__mix_out
 					);
 				}
 			}
@@ -615,7 +621,7 @@ class MyMoneroCoreBridgeClass extends MyMoneroCoreBridgeEssentialsClass {
 		}
 		const args_str = JSON.stringify(args);
 		const ret_string = this.Module.send_step2__try_create_transaction(
-			args_str,
+			args_str
 		);
 		const ret = JSON.parse(ret_string);
 		//

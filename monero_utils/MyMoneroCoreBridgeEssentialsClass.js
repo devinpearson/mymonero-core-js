@@ -33,15 +33,13 @@
 // v--- These should maybe be injected into a context and supplied to currencyConfig for future platforms
 const JSBigInt = require("@mymonero/mymonero-bigint").BigInteger;
 const nettype_utils = require("@mymonero/mymonero-nettype");
-//
 const MyMoneroBridge_utils = require("@mymonero/mymonero-bridge-utils");
-//
+
 class MyMoneroCoreBridgeEssentialsClass {
 	constructor(this_Module) {
 		this.Module = this_Module;
 	}
-	//
-	//
+	
 	__new_cb_args_with(task_id, err_msg, res) {
 		const args = {
 			task_id: task_id,
@@ -53,11 +51,11 @@ class MyMoneroCoreBridgeEssentialsClass {
 		}
 		return args;
 	}
+
 	__new_task_id() {
 		return Math.random().toString(36).substr(2, 9); // doesn't have to be super random
 	}
-	//
-	//
+	
 	is_subaddress(addr, nettype) {
 		const args = {
 			address: addr,
@@ -131,7 +129,7 @@ class MyMoneroCoreBridgeEssentialsClass {
 			view: ret.pub_viewKey_string,
 			intPaymentId: ret.paymentID_string, // may be undefined
 			isSubaddress: MyMoneroBridge_utils.ret_val_boolstring_to_bool(
-				ret.isSubaddress,
+				ret.isSubaddress
 			),
 		};
 	}
@@ -178,7 +176,7 @@ class MyMoneroCoreBridgeEssentialsClass {
 		const args = {
 			seed_string: seed_string,
 			wordset_name: MyMoneroBridge_utils.api_safe_wordset_name(
-				wordset_name,
+				wordset_name
 			),
 		};
 		const args_str = JSON.stringify(args);
@@ -213,13 +211,7 @@ class MyMoneroCoreBridgeEssentialsClass {
 		};
 	}
 
-	validate_components_for_login(
-		address_string,
-		sec_viewKey_string,
-		sec_spendKey_string,
-		seed_string,
-		nettype,
-	) {
+	validate_components_for_login(address_string, sec_viewKey_string, sec_spendKey_string, seed_string, nettype) {
 		const args = {
 			address_string: address_string,
 			sec_viewKey_string: sec_viewKey_string,
@@ -236,10 +228,10 @@ class MyMoneroCoreBridgeEssentialsClass {
 		return {
 			// calling these out so as to provide a stable ret val interface
 			isValid: MyMoneroBridge_utils.ret_val_boolstring_to_bool(
-				ret.isValid,
+				ret.isValid
 			),
 			isInViewOnlyMode: MyMoneroBridge_utils.ret_val_boolstring_to_bool(
-				ret.isInViewOnlyMode,
+				ret.isInViewOnlyMode
 			),
 			pub_viewKey_string: ret.pub_viewKey_string,
 			pub_spendKey_string: ret.pub_spendKey_string,
@@ -302,11 +294,12 @@ class MyMoneroCoreBridgeEssentialsClass {
 		}
 		return ret.retVal;
 	}
+
 	estimated_tx_network_fee(
 		fee_per_kb__string,
 		priority,
 		optl__fee_per_b_string,
-		optl__fork_version, // this is until we switch the server over to fee per b
+		optl__fork_version // this is until we switch the server over to fee per b
 	) {
 		// TODO update this API to take object rather than arg list
 		const args = {
@@ -336,5 +329,5 @@ class MyMoneroCoreBridgeEssentialsClass {
 		return ret.retVal; // this is a string - pass it to new JSBigInt(…)
 	}
 }
-//
+
 module.exports = MyMoneroCoreBridgeEssentialsClass;
